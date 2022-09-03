@@ -8,4 +8,5 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('', views.index, name='index'),
     path('<pk>/delete/', views.delete_item, name='remove'),
+    path('success/', views.success, name='success'),
 ]

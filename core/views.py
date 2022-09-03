@@ -28,7 +28,14 @@ def index(request):
         emailForm = EmailForm(request.POST)
 
         if emailForm.is_valid():
-            return redirect('index')
+            sender = request.POST['sender']
+            subject = request.POST['subject']
+            message = request.POST['message']                
+            recipient_list = list(Recipient.objects.values_list('email')) 
+
+            send_mail(subject, message, sender, recipient_list)
+
+            return redirect('success')
     
 
     else:
@@ -50,3 +57,6 @@ def delete_item(request, pk):
     del_recipient.delete()
     return redirect('index')
     
+
+def success(request):
+    return render(request, 'success.html')
