@@ -13,13 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">    
 </head>
 <body>
-    <main>
-    <div class="email-sender">
-        <div class="text-sm">
-            <ul>
+    <main class="lg:h-screen lg:pt-0 lg:px-0">
+    <div class="email-sender lg:h-screen lg:flex lg:justify-center lg:items-center">
+        <div class="recipients_container text-sm lg:h-5/6 lg:shadow-xl lg:w-full lg:border-2">
+            <ul class="lg:mx-2 lg:mt-2 lg:overflow-y-auto">
                 {% for recipient in recipients %}
-                <li>
-                    <p>
+                <li class="lg:py-1.5">
+                    <p class="cursor-default">
                         <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 17l5-5-5-5v10z"/></svg>
                         {{recipient.email}} 
                     </p>
@@ -28,16 +28,18 @@
                     </a>
                 </li>
                 {% endfor %}
+            </ul>
+            <div class="lg:flex lg:flex-col">
+                <form action="" method="POST" class="recipients_form">
+                    {% csrf_token %}
+                    {{recipientForm}}
+                    <input type="submit" name="submit-email-address" hidden>
+                </form>
+                {% for message in messages %}
+                <small class="text-red-700 lg:ml-3.5"> {{message}} </small>
+                {% endfor %}
             </div>
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{recipientForm}}
-                <input type="submit" name="submit-email-address" hidden>
-            </form>
-            {% for message in messages %}
-            <small class="text-red-700"> {{message}} </small>
-            {% endfor %}
-        </dir>
+        </div>
     </div>
     <div class="email">
         <form action="" method="POST">

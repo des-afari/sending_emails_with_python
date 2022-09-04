@@ -89,3 +89,35 @@ ul > li > p{
 #id_email:focus{
     outline: none;
 }
+
+@media screen and (min-width: 600px) {
+    main{
+        padding: .8em 3em;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    main{
+        grid: 
+            'email-sender email';
+        grid-template-columns: 18% 1fr;
+    }
+
+    .recipients_container{
+        display: grid;
+        grid-template-rows: 87% 10%;
+        row-gap: 3%;
+    }
+
+    .recipients_form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #id_email{
+        margin: 0;
+        margin-left: .5rem;
+    }
+}
+
