@@ -31,9 +31,9 @@ def index(request):
             sender = request.POST['sender']
             subject = request.POST['subject']
             message = request.POST['message']                
-            recipient_list = list(Recipient.objects.values_list('email')) 
+            # recipient_list = list(Recipient.objects.values_list('email')) 
 
-            send_mail(subject, message, sender, recipient_list)
+            # send_mail(subject, message, sender, recipient_list, fail_silently=False)
 
             return redirect('success')
     

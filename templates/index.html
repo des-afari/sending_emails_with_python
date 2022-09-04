@@ -7,22 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Sender</title>
     <link rel="stylesheet" href=" {% static 'css/main.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/misc.css' %} ">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        body{
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">    
 </head>
 <body>
-    <div>
+    <main>
+    <div class="email-sender">
         <div class="text-sm">
             <ul>
                 {% for recipient in recipients %}
                 <li>
-                    <p> {{recipient.email}} </p>
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 17l5-5-5-5v10z"/></svg>
+                        {{recipient.email}} 
+                    </p>
                     <a href="{% url 'remove' recipient.id %}">
                         <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
                     </a>
@@ -31,25 +31,27 @@
             </div>
             <form action="" method="POST">
                 {% csrf_token %}
-                {{recipientForm.as_p}}
+                {{recipientForm}}
                 <input type="submit" name="submit-email-address" hidden>
             </form>
-            <div>
-                {% for message in messages %}
-                <small class="text-red-700"> {{message}} </small>
-                {% endfor %}
-            </div>
+            {% for message in messages %}
+            <small class="text-red-700"> {{message}} </small>
+            {% endfor %}
         </dir>
     </div>
-    <div>
+    <div class="email">
         <form action="" method="POST">
             {% csrf_token %}
-            {{emailForm.as_p}}
+            {{emailForm}}
             <button type="submit" name="send-email">
                 Send message
                 <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4.01 6.03l7.51 3.22-7.52-1 .01-2.22m7.5 8.72L4 17.97v-2.22l7.51-1M2.01 3L2 10l15 2-15 2 .01 7L23 12 2.01 3z"/></svg>
             </button>
         </form>
     </div>
+    </main>
+    <script>
+        document.getElementById('id_email').placeholder = 'Add email address'
+    </script>
 </body>
 </html>

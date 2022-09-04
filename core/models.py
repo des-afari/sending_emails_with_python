@@ -8,3 +8,6 @@ class Recipient(models.Model):
     def __str__(self):
         return self.email 
 
+    def get_emails(self):
+        return self.email
+
