@@ -69,7 +69,6 @@ ul > li{
     justify-content: space-between;
     padding: .8em .3em;
     margin-bottom: .5em;
-    background-color: rgb(216, 213, 213);
 }
 
 
@@ -118,6 +117,24 @@ ul > li > p{
     #id_email{
         margin: 0;
         margin-left: .5rem;
+    }
+
+    .email{
+        margin: 0;
+    }
+
+    .email textarea{
+        height: 72.5%;
+        border: none;
+    }
+
+    .email textarea:focus{
+        outline: none;
+    }
+
+
+    button[name="send-email"]{
+        width: 30%;
     }
 }
 
