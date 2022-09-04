@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^arf0^d@qc5mum)kyt3slls)4fv2e6#h-81!s4quv3ct=ec%u8'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -124,10 +125,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# DEFAULT_FROM_EMAIL = load_dotenv(DEFAULT_FROM_EMAIL)
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = load_dotenv(EMAIL_HOST_USER)
-# EMAIL_HOST_PASSWORD = load_dotenv(EMAIL_HOST_PASSWORD)
-# EMAIL_PORT = load_dotenv(EMAIL_PORT)
-# EMAIL_USE_TLS = load_dotenv(EMAIL_USE_TLS)
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
