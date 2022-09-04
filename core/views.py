@@ -31,7 +31,10 @@ def index(request):
             sender = request.POST['sender']
             subject = request.POST['subject']
             message = request.POST['message']                
-            recipient_list = list(Recipient.objects.values_list('email')) 
+            recipient_list = []
+            
+            for r in Recipient.objects.all():
+                recipient_list.append(r.email)
 
             send_mail(subject, message, sender, recipient_list, fail_silently=False)
 
@@ -42,6 +45,7 @@ def index(request):
         recipients = Recipient.objects.all()
         emailForm = EmailForm()
         recipientForm = RecipientForm()
+
         
         context = {
             'recipients': recipients,
